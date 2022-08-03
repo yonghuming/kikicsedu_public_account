@@ -70,6 +70,7 @@ def query_users():
         users = Users.query.all()
         return users
     except OperationalError as e:
+        print("query_users errorMsg= {} ".format(e))
         logger.info("query_users errorMsg= {} ".format(e))
         return None
 
