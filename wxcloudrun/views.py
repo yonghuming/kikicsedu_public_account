@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask import render_template, request
 from run import app
-from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
+from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid, query_users
 from wxcloudrun.model import Counters
 from wxcloudrun.response import make_succ_empty_response, make_succ_response, make_err_response
 
@@ -12,6 +12,11 @@ def index():
     :return: 返回index页面
     """
     return render_template('index.html')
+
+@app.route('/users')
+def users():
+    users = query_users()
+    return render_template('users.html', users=users)
 
 
 @app.route('/api/count', methods=['POST'])
